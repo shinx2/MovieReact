@@ -16,7 +16,7 @@ const Overview = () => {
 
   const handleOnClick = () => {
     let isMovieExist = false;
-    //check is movieID exist in localstorage list
+    // Check if movieID exist in localstorage list
     JSON.parse(localStorage.getItem("watchList")).map((movie) => {
       if (movie.movieID.toString() === movieDetails.id.toString()) {
         isMovieExist = true;

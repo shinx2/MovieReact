@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Poster from './Poster';
-import './MovieApp.css';
-import {useHistory} from 'react-router-dom';
-import {DropdownButton, Dropdown, Card, CardDeck} from 'react-bootstrap';
+import Poster from "./Poster";
+import "./MovieApp.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Nav, NavDropdown, Navbar, Form, FormControl, Button, Dropdown, Card } from "react-bootstrap";
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 
-const MovieApp = () => {
+const MovieApp = (props) => {
   const [movies, setMovies] = useState([]);
   const [inputVal, setInputVal] = useState("");
-  const [selectGenres,  setSelectGenres] = useState([]);
-  const history = useHistory();
+  const [selectGenres, setSelectGenres] = useState([]);
+
 
   const handleChange = (event) => {
     setInputVal(event.target.value);
   };
+
 
   // On movie search submit, call api from inputval
   const handleSubmit = (event) => {
@@ -28,10 +29,6 @@ const MovieApp = () => {
     });
   };
 
-  const handleWatchList = () => {
-    history.push("watchlist");
-  }
-
   // Select genre
   const handleGenre = (event) => {
     event.preventDefault();
@@ -41,10 +38,9 @@ const MovieApp = () => {
       console.log(res.data.results);
       setMovies(res.data.results);
     });
-  }
+  };
 
-
-  // On page load, show popular movies 
+  // On page load, show popular movies
   useEffect(() => {
     const titleURL = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
     axios.get(titleURL).then((res) => {
@@ -53,56 +49,76 @@ const MovieApp = () => {
     });
   }, []);
 
-  // Genre dropdown list
+  // Call genre api
   useEffect(() => {
-    const genreURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
+    const genreURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
     axios.get(genreURL).then((res) => {
       console.log(res.data.genres);
       setSelectGenres(res.data.genres);
-    })
-  },[]);
+    });
+  }, []);
 
   return (
-    <div className="searchbar">
-      <h1>Movies</h1>
-      <form>
-        <input
-          type="text"
-          placeholder="Search movies..."
-          value={inputVal}
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit}>Search</button>
-        < br/>
-          <DropdownButton id="search-genre" title="Search Genre">
-            <Dropdown.ItemText>List of Genres</Dropdown.ItemText>
-            {
-              selectGenres.map((genre) => {
-                return (
-                  <Dropdown.Item key={genre.id} value={genre.id} onClick={handleGenre} as="button">{genre.name}</Dropdown.Item>
-                )
-              })
-            }
-          </DropdownButton>
-        < br/>
-        <button onClick={handleWatchList}>My Watchlist</button>
-      </form>
-      <div className="row">
-        <div className="container">
-      {/* <div className="grid"> */}
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>Movie</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="watchlist">My Watchlist</Nav.Link>
+          <NavDropdown title="Genres" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
+            {selectGenres.map((genre) => {
+              return (
+                <Dropdown.Item
+                  key={genre.id}
+                  value={genre.id}
+                  onClick={handleGenre}
+                  as="button"
+                >
+                  {genre.name}
+                </Dropdown.Item>
+              );
+            })}
+            <NavDropdown.Divider />
+          </NavDropdown>
+        </Nav>
+        <Form inline>
+          <FormControl
+            type="text"
+            placeholder="Search movies..."
+            className="mr-sm-2"
+            value={inputVal}
+            onChange={handleChange}
+          />
+          <Button variant="outline-info" onClick={handleSubmit}>
+            Search
+          </Button>
+        </Form>
+      </Navbar>
+      <br/>
+      <div className = "container"> 
       {movies.map((movie) => {
-        if (movie.poster_path !== null) {
-          return (
-            <div className="cardcol" style={{width: "350px", height: "350px", margin: "40px"}}>
-  <Card className="carddetail" style={{"margin-bottom": "10px!important"  }}>
-    <Card.Img variant="top" src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`} />
-    <Card.Body style={{padding: "10px"}}>
-      <Card.Title>{movie.title}</Card.Title>
-      <Card.Text>
-      </Card.Text>
-    </Card.Body>
-    </Card>
-    </div>
+                if (movie.poster_path !== null) {
+                    return ( 
+                      <div className = "wholecard" >
+                        <Card style = {{ width: '18rem' }}>
+                        <Card.Img variant = "top" src = {`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}/> 
+                        <Card.Body>
+                        <Card.Title> {movie.title} </Card.Title> 
+                        <Card.Text>
+                        </Card.Text> 
+                        </Card.Body> 
+                        </Card> 
+                        </div>
+                    );
+                }
+            })
+        } 
+        </div> 
+        </>
+);
+};
+export default MovieApp;
         
 
 //  <Poster    
@@ -113,13 +129,3 @@ const MovieApp = () => {
 //             rating={movie.vote_average}
 //             srcvalue={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
 //             movietitle={movie.title}/>
-          );
-        }
-      })}
-      </div>
-    </div>
-    </div>
-  );
-};
-
-export default MovieApp;

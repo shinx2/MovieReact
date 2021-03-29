@@ -12,6 +12,8 @@ const Poster = (props) => {
     }
 
   return (
+
+    
     <div className="moviecard" key={props.movieid} style={{height: props.height, width: props.width}}>
       <img
         height={props.height}

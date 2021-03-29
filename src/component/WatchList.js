@@ -10,6 +10,7 @@ const WatchList = () => {
     return item ? JSON.parse(item) : [];
   });
 
+// To remove movie from watchlist 
   const handleRemove = (event) => {
     let selectedMovie = event.target.value.toString();
     setWatchlistArray(
@@ -17,6 +18,7 @@ const WatchList = () => {
     );
   };
 
+// Save remove updates to local storage 
   useEffect(() => {
     console.log(watchlistArray);
     localStorage.setItem("watchList", JSON.stringify(watchlistArray));

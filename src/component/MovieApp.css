@@ -1,17 +1,17 @@
-.grid {
+/* .grid {
     max-width: 80%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-  }
+  } */
 
-.cardcol  {
-  display: inline-block!important;
-  
-  
+.wholecard {
+    display: inline-block;
+    margin-bottom: 20px;
 }
 
-.carddetail {
-  margin-bottom: 10px;
+.card {
+  max-height: 500px!important;
+  margin-right: 10px!important;
 }
