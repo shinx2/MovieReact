@@ -1,0 +1,10 @@
+.moviecard {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    position: relative;
+    transition: all .4s linear;
+    transform-style: preserve-3d;
+    margin: 5px;
+    margin-bottom: 80px;
+  }
+
