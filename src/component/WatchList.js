@@ -27,26 +27,28 @@ const WatchList = () => {
   return (
     <div>
       <h1>My Watchlist</h1>
-      <div className="grid">
+      <div className="grid1">
         {watchlistArray.map((watch) => {
           return (
             <div>
               <Poster
-                height={"300px"}
-                width={"200px"}
+                height={"500px"}
+                width={"18rem"}
                 movieid={watch.movieID}
                 rating={watch.ratings}
                 srcvalue={`http://image.tmdb.org/t/p/w185/${watch.movieURL}`}
                 movietitle={watch.movieTitle}
+                removeMovieMethod={handleRemove}
+                showRemoveButton={true}
               />
-              <Button
+              {/* {true && <Button
                 value={watch.movieID}
                 variant="warning"
                 size="sm"
                 onClick={handleRemove}
               >
                 Remove from watchlist
-              </Button>
+              </Button>} */}
             </div>
           );
         })}

@@ -67,11 +67,12 @@ const Overview = () => {
       {movieDetails.poster_path !== undefined && (
         <Poster
           height={"500px"}
-          width={"370px"}
+          width={"22rem"}
           movieid={movieDetails.id}
           rating={movieDetails.vote_average}
           srcvalue={`http://image.tmdb.org/t/p/w185/${movieDetails.poster_path}`}
           movietitle={movieDetails.title}
+          showRemoveButton={false}
         />
       )}
 

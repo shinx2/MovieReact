@@ -6,12 +6,3 @@
     justify-content: space-evenly;
   } */
 
-.wholecard {
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.card {
-  max-height: 500px!important;
-  margin-right: 10px!important;
-}

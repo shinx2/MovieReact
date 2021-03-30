@@ -1,16 +1,20 @@
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './Routes';
+import MainNav from './component/MainNav';
+import {MovieContextProvider} from './context/MovieContext';
 
 function App() {
 
   return (
     <div className="App">
-    {/* history={createBrowserHistory()} */}
-      <Router routes={Routes}>
-        {/* context for movielist in main page */}
-        <Routes/>
-      </Router> 
+      <MovieContextProvider>
+        <Router routes={Routes}>
+          {/* context for movielist in main page */}
+          <MainNav />
+          <Routes/>
+        </Router> 
+      </MovieContextProvider>
     </div>
   );
 }

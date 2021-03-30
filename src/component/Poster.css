@@ -8,3 +8,17 @@
     margin-bottom: 80px;
   }
 
+.wholecard {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rbga(253,140,200), 0 4px 8px rbga(253,140,200);
+}
+
+/* .card {
+  max-height: 500px!important;
+  margin-right: 10px!important;
+} */
