@@ -22,9 +22,9 @@ const MovieApp = () => {
                 width={"18rem"}
                 movieid={movie.id}
                 rating={movie.vote_average}
-                srcvalue={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+                srcvalue={`http://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 movietitle={movie.title}
-                showRemoveButton={false}
+                // showRemoveButton={false}
               />
             );
           }

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./Poster.css";
 import { useHistory } from "react-router-dom";
-import { Card, Button, Modal } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 const Poster = (props) => {
   const history = useHistory();
 
-  const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+  const [show, setShow] = useState(false);
 
   const handleImgClick = () => {
     localStorage.setItem("movieID", props.movieid);
@@ -21,6 +21,7 @@ const Poster = (props) => {
   return (
     <>
       <div className="wholecard">
+        <br />
         <Card
           key={props.movieid}
           style={{
@@ -30,8 +31,16 @@ const Poster = (props) => {
           }}
         >
           <Card.Body>
+            <Card.Img
+              variant="top"
+              src={props.srcvalue}
+              onClick={() => {
+                handleImgClick();
+                handleShow();
+              }}
+            ></Card.Img>
             <Card.Title>
-              <h5>{props.movietitle}</h5>
+              <p>{props.movietitle}</p>
             </Card.Title>
             <Card.Text>
               <p>Rating: {props.rating}</p>
@@ -47,44 +56,35 @@ const Poster = (props) => {
               Remove from watchlist
             </Button>
           )}
-          <Card.Img
-            variant="middle"
-            src={props.srcvalue}
-            onClick={() => {
-              handleImgClick();
-              handleShow();
-            }}
-          />
         </Card>
-        <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <iframe
-            width="420"
-            height="315"
-            src="https://www.youtube.com/embed/iqys_1pQdpg"
-            frameborder="0"
-            allowfullscreen
-          ></iframe> 
-                    {/* <iframe
+        {/* <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <iframe
+              width="420"
+              height="315"
+              src="https://www.youtube.com/embed/iqys_1pQdpg"
+              frameborder="0"
+              allowfullscreen
+            ></iframe> */}
+        {/* <iframe
             width="420"
             height="315"
             src={`https://www.youtube.com/embed/${}`}
             frameborder="0"
             allowfullscreen
           ></iframe>  */}
-        </Modal.Body>
+        {/* </Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal> */}
       </div>
-
     </>
   );
 };

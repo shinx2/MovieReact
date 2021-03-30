@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './Poster.css'
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 
@@ -20,10 +21,10 @@ const Reviews = (props) => {
     <div>
       {reviews.map((review) => {
         return (
-          <div key={review.id}>
-            <h3>{review.author}</h3>
+          <div className="reviews" key={review.id}>
+            <h5>{review.author}</h5>
             {/* <img src= {`http://image.tmdb.org/t/p/w185/${review.author_details.avatar_path}`} alt={review.author_details.username} style={height=30, width= 30}/> */}
-            <h4>{review.content}</h4>
+            <h6>{review.content}</h6>
           </div>
         );
       })}

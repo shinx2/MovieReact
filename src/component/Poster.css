@@ -18,6 +18,23 @@
   box-shadow: 0 10px 20px rbga(253,140,200), 0 4px 8px rbga(253,140,200);
 }
 
+.overviewcard {
+   border: none!important;
+   max-width: 55rem!important;
+  margin: auto!important;
+}
+
+.overviewcard:hover{
+  transform: none;
+  box-shadow: none;
+}
+
+.reviews {
+  text-align: center;
+  flex-wrap: wrap;
+
+}
+
 /* .card {
   max-height: 500px!important;
   margin-right: 10px!important;

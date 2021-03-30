@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { NavDropdown, Dropdown } from "react-bootstrap";
-import {MovieContext} from '../context/MovieContext';
-
+import { MovieContext } from "../context/MovieContext";
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 

@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Poster from "./Poster";
-import Reviews from "./Reviews";
-import WatchList from "./WatchList";
+// import Poster from "./Poster";
+// import Reviews from "./Reviews";
+// import WatchList from "./WatchList";
+import Trailer from  "./Trailer";
+import { Card, Button } from "react-bootstrap";
+import './Poster.css';
+import Recommendations from "./Recommendations";
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 
@@ -58,26 +62,23 @@ const Overview = () => {
 
   return (
     <div>
-      <h1>{movieDetails.title}</h1>
-      <h3>Summary: {movieDetails.overview}</h3>
-      <h3>Release Date: {movieDetails.release_date}</h3>
-      <h3>Rating: {movieDetails.vote_average}</h3>
-      <button onClick={handleOnClick}>Add to watchlist</button>
-
-      {movieDetails.poster_path !== undefined && (
-        <Poster
-          height={"500px"}
-          width={"22rem"}
-          movieid={movieDetails.id}
-          rating={movieDetails.vote_average}
-          srcvalue={`http://image.tmdb.org/t/p/w185/${movieDetails.poster_path}`}
-          movietitle={movieDetails.title}
-          showRemoveButton={false}
-        />
-      )}
-
-      <Reviews movieid={movieDetails.id} />
-    </div>
+      <br/>
+      <Card className="overviewcard">
+    <Card.Img variant="top" src={`http://image.tmdb.org/t/p/original/${movieDetails.backdrop_path}`}/>
+    <Card.Body><h1><b>{movieDetails.title}</b></h1>
+      <Card.Text><p>
+      <b>Summary:</b> {movieDetails.overview}<br/>
+      <b>Release Date:</b> {movieDetails.release_date}<br/>
+     <b>Rating:</b> {movieDetails.vote_average}
+     </p>
+     <Button variant="danger" onClick={handleOnClick}>Add to watchlist</Button>{' '}
+     <br/>
+    {/* <p> <Reviews movieid={movieDetails.id} /></p> */}
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  <br />
+  </div>
   );
 };
 
