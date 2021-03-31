@@ -42,20 +42,14 @@ const Poster = (props) => {
             <Card.Title>
               <p>{props.movietitle}</p>
             </Card.Title>
-            <Card.Text>
+            {!props.showRemoveButton && <Card.Text>
               <p>Rating: {props.rating}</p>
-            </Card.Text>
+            </Card.Text>}
+            {props.showRemoveButton && (
+             <Button variant="warning" value={props.movieid} onClick={props.removeMovieMethod}>Remove</Button>
+              )}
           </Card.Body>
-          {props.showRemoveButton && (
-            <Button
-              value={props.movieid}
-              variant="warning"
-              size="sm"
-              onClick={props.removeMovieMethod}
-            >
-              Remove from watchlist
-            </Button>
-          )}
+
         </Card>
         {/* <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

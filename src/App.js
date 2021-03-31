@@ -10,7 +10,6 @@ function App() {
     <div className="App">
       <MovieContextProvider>
         <Router routes={Routes}>
-          {/* context for movielist in main page */}
           <MainNav />
           <Routes/>
         </Router> 

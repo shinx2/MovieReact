@@ -24,7 +24,7 @@ const MovieApp = () => {
                 rating={movie.vote_average}
                 srcvalue={`http://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 movietitle={movie.title}
-                // showRemoveButton={false}
+                showRemoveButton={false}
               />
             );
           }

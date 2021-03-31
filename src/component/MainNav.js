@@ -3,12 +3,15 @@ import axios from "axios";
 import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 import { MovieContext } from "../context/MovieContext";
 import Genres from "./Genres.js";
+import { useHistory } from "react-router-dom";
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 
 const MainNav = () => {
   const { setMovies } = useContext(MovieContext);
   const [inputVal, setInputVal] = useState("");
+
+const history = useHistory();
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -19,6 +22,7 @@ const MainNav = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(inputVal);
+    history.push("/");
     const titleURL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${inputVal}&page=1&include_adult=false`;
     axios.get(titleURL).then((res) => {
       console.log(res.data.results);
@@ -44,7 +48,7 @@ const MainNav = () => {
           <Nav.Link href="watchlist">My Watchlist</Nav.Link>
           <Genres />
         </Nav>
-        <Form inline onClick={handleSubmit}>
+        <Form inline >
           <FormControl
             type="text"
             placeholder="Search movies..."
@@ -52,7 +56,7 @@ const MainNav = () => {
             value={inputVal}
             onChange={handleChange}
           />
-          <Button variant="outline-info" type="submit">
+          <Button variant="outline-info" type="submit" onClick={handleSubmit}>
             Search
           </Button>
         </Form>

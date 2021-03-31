@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import axios from "axios";
 import { NavDropdown, Dropdown } from "react-bootstrap";
 import { MovieContext } from "../context/MovieContext";
+import { useHistory } from "react-router-dom";
+
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 
@@ -11,10 +13,13 @@ const Genres = () => {
 
   const [selectGenres, setSelectGenres] = useState([]);
 
+const history = useHistory();
+
   // Select genre
   const handleGenre = (event) => {
     event.preventDefault();
     console.log(event.target.value);
+    history.push("/");
     const findGenreURL = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&with_genres=${event.target.value}`;
     axios.get(findGenreURL).then((res) => {
       console.log(res.data.results);

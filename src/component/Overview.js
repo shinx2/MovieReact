@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import Poster from "./Poster";
-// import Reviews from "./Reviews";
-// import WatchList from "./WatchList";
 import Trailer from  "./Trailer";
 import { Card, Button } from "react-bootstrap";
 import './Poster.css';
-import Recommendations from "./Recommendations";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 
-const Overview = () => {
+const Overview = (props) => {
   const [movieDetails, setMovieDetails] = useState({});
   const [movieID, setMovieID] = useState("");
   const [watchlist, setWatchlist] = useState(() => {
@@ -73,7 +70,7 @@ const Overview = () => {
      </p>
      <Button variant="danger" onClick={handleOnClick}>Add to watchlist</Button>{' '}
      <br/>
-    {/* <p> <Reviews movieid={movieDetails.id} /></p> */}
+     <Trailer title={movieDetails.title} year={movieDetails.release_date} movieobj={movieDetails}/>   
       </Card.Text>
     </Card.Body>
   </Card>

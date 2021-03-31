@@ -9,7 +9,6 @@ export default ()=>
     <Route path='/' exact component={withRouter(MovieApp)}/>
     <Route path="/overview" exact component={withRouter(Overview)}/>
     <Route path="/watchlist" exact component={withRouter(WatchList)}/>
-
 </Switch>
 
 ;
