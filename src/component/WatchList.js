@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Poster from "./Poster";
 import "./WatchList.css";
-import { Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const WatchList = (props) => {
@@ -42,14 +41,6 @@ const WatchList = (props) => {
                 removeMovieMethod={handleRemove}
                 showRemoveButton={true}
               />
-              {/* {true && <Button
-                value={watch.movieID}
-                variant="warning"
-                size="sm"
-                onClick={handleRemove}
-              >
-                Remove from watchlist
-              </Button>} */}
             </div>
           );
         })}

@@ -42,7 +42,7 @@ const history = useHistory();
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand>Movie</Navbar.Brand>
+        <Navbar.Brand>MovieHub</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="watchlist">My Watchlist</Nav.Link>

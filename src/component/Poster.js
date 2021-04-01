@@ -6,8 +6,6 @@ import { Card, Button } from "react-bootstrap";
 const Poster = (props) => {
   const history = useHistory();
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   
   const [show, setShow] = useState(false);
 
@@ -20,7 +18,7 @@ const Poster = (props) => {
 
   return (
     <>
-      <div className="wholecard">
+      <div className="wholecard" sytle={{overflowY: "auto"}}>
         <br />
         <Card
           key={props.movieid}
@@ -36,7 +34,6 @@ const Poster = (props) => {
               src={props.srcvalue}
               onClick={() => {
                 handleImgClick();
-                handleShow();
               }}
             ></Card.Img>
             <Card.Title>
@@ -46,38 +43,10 @@ const Poster = (props) => {
               <p>Rating: {props.rating}</p>
             </Card.Text>}
             {props.showRemoveButton && (
-             <Button variant="warning" value={props.movieid} onClick={props.removeMovieMethod}>Remove</Button>
+             <Button variant="warning" size="sm" value={props.movieid} onClick={props.removeMovieMethod}>Remove</Button>
               )}
           </Card.Body>
-
         </Card>
-        {/* <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <iframe
-              width="420"
-              height="315"
-              src="https://www.youtube.com/embed/iqys_1pQdpg"
-              frameborder="0"
-              allowfullscreen
-            ></iframe> */}
-        {/* <iframe
-            width="420"
-            height="315"
-            src={`https://www.youtube.com/embed/${}`}
-            frameborder="0"
-            allowfullscreen
-          ></iframe>  */}
-        {/* </Modal.Body>
-
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal> */}
       </div>
     </>
   );

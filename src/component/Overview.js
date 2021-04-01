@@ -3,21 +3,21 @@ import axios from "axios";
 import Trailer from  "./Trailer";
 import { Card, Button } from "react-bootstrap";
 import './Poster.css';
-import { propTypes } from "react-bootstrap/esm/Image";
+
 
 const apiKey = `${process.env.REACT_APP_API_KEY}`;
 
-const Overview = (props) => {
+const Overview = () => {
   const [movieDetails, setMovieDetails] = useState({});
   const [movieID, setMovieID] = useState("");
   const [watchlist, setWatchlist] = useState(() => {
     const item = localStorage.getItem("watchList");
     return item ? JSON.parse(item) : [];
-  });
+  }); // upon first load, if no movies in watchlist, store it as an empty array 
 
   const handleOnClick = () => {
     let isMovieExist = false;
-    // Check if movieID exist in localstorage list
+    // check if movie exist in localstorage list
     JSON.parse(localStorage.getItem("watchList")).map((movie) => {
       if (movie.movieID.toString() === movieDetails.id.toString()) {
         isMovieExist = true;
@@ -27,6 +27,7 @@ const Overview = (props) => {
     if (isMovieExist) {
       // do nothing
     } else {
+      //  add on
       setWatchlist((oldArray) => [
         ...oldArray,
         {
