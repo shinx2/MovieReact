@@ -11,5 +11,5 @@
 -  User can add movie to watchlist
 
 # API used 
-- TMBD
+- TMDB
 - YouTube
